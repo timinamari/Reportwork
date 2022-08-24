@@ -2,6 +2,29 @@ namespace bibliobook
 {
     public partial class Form1 : Form
     {
+        public List<string> Readers { get; set; } 
+        public List<string> Books { get; set; } 
+        public Dictionary<string, List<string>> Informations { get; set; } = new Dictionary<string, List<string>>()
+        {
+            {"Иванов", new List<string>(){"Война и мир", "Евгений Онегин"} }
+        };
+
+        public void On()
+        {
+            Informations.Add("Иванов", new List<string>(){ "Война и мир", "Евгений Онегин" });
+            try
+            {
+                Informations[Readers[0]] = new List<string>();
+            }
+            catch (KeyNotFoundException e)
+            {
+                Informations.Add(Readers[0], new List<string>() { "Война и мир", "Евгений Онегин" });
+            }
+            
+
+
+        }
+
         public Form1()
         {
             InitializeComponent();
